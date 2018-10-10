@@ -388,7 +388,7 @@ func StarAction(ctx *cli.Context) {
 				if total != 0 {
 					totalPage = math.Ceil(float64(total) / float64(size))
 				}
-				fmt.Fprintf(color.Output, "total:%v in %v, size:%v, page:%v/%v\n", total, size, page, totalPage)
+				fmt.Fprintf(color.Output, "total:%v, size:%v, page:%v/%v\n", total, size, page, totalPage)
 			} else {
 				color.Red(result.Message)
 			}
