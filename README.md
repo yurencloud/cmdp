@@ -2,7 +2,7 @@
 
 ![demo](http://cloud.yurencloud.com/index.php/s/pCYZvM1AFJGtdeW/download)
 
-
+## 怕大家不明白这东西干什么用，你就当cmdp是git部分功能的缩小版，可以搜索，记录，提交，上传，下载，执行自己的或他人的1行文字，或者1个文件。
 
 #### 功能
 
