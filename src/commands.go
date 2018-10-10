@@ -120,6 +120,12 @@ var (
 		Aliases: []string{"l", "pl", "P"},
 		Usage:   "pull your file from remote",
 		Action:  PullFileAction,
+		Flags: []cli.Flag{
+			cli.BoolFlag{
+				Name:  "print,p",
+				Usage: "not download, only print file content",
+			},
+		},
 	}
 	FindFileCommand = cli.Command{
 		Name:    "find",

@@ -283,18 +283,13 @@ func PullFileAction(ctx *cli.Context) {
 
 	if result.Status == SUCCESS {
 		file := result.Data
-		if ctx.Bool("content") {
-			fmt.Println(file.Content)
-			return
-		}
-
 		status := ""
 		if file.Private {
 			status = "private"
 		}
 		if ctx.Bool("print") {
-			fmt.Fprintf(color.Output, "%s | %s %s %s id:%s\n", green(file.Name), blue(file.Keyword), file.Comment, status, red(file.Id))
 			fmt.Println(file.Content)
+			return
 		} else {
 			err := ioutil.WriteFile(file.Name, []byte(file.Content), 0644)
 			if err != nil {
