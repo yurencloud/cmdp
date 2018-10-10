@@ -203,16 +203,6 @@ cmdp register USERNAME PASSWORD
 ~~~
 注册后自动在HOME目录下生成.cmdp/.cmdp_token文件，*请不要删除*，token有效期1年
 
----
-
-一个人可以申请多个用户名，以方便创建各种类型的单行文本或单个文件提示，搜索，执行，方便大众搜索，下载，执行，使用。
-
-以下用户名已经被保护，若想注册，请发邮件给我 641212003@qq.com（附上github，博客地址）
-
-```
-css,javascript,html,shell,git,java,php,python,sql,ruby,object-c,visualbasic,perl,swift,golang,scala,apache,bash,lua,npm,node,react,vue,redis,mongodb,mysql,svn,k8s,kubernetes,vagrant,linux,centos,ubuntu,blockchain,bitcoin,ethereum,android,ios,net,angular,jquery,nodejs,reactnative,hadoop,docker,spark,hive,oracle,unity3d,cocos,
-```
-
 #### 登录
 
 若已经注册，或切换登录，或token过期，或token删除，请使用登录功能，会生成新的token
