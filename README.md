@@ -1,4 +1,4 @@
-## cmdp 命令行和单文件快捷提示、下载、执行工具（远程同步）
+## cmdp 命令行和单文件快速提示、上传、下载、执行工具（远程同步）
 
 ![demo](http://cloud.yurencloud.com/index.php/s/pCYZvM1AFJGtdeW/download)
 
