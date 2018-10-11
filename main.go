@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/yurencloud/cmdp/src"
 	"github.com/urfave/cli"
+	"github.com/yurencloud/cmdp/src"
 	"os"
 )
 
@@ -31,6 +31,7 @@ func main() {
 		src.RemoveFileCommand,
 		// star
 		src.StarCommand,
+		src.UpdateCommand,
 	}
 
 	err := app.Run(os.Args)

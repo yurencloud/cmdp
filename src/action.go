@@ -394,3 +394,11 @@ func StarAction(ctx *cli.Context) {
 		}
 	}
 }
+
+func UpdateAction(ctx *cli.Context) {
+	_, err := Exec("go get github.com/yurencloud/cmdp")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+}

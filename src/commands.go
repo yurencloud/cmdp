@@ -178,4 +178,9 @@ var (
 			},
 		},
 	}
+	UpdateCommand = cli.Command{
+		Name:   "update",
+		Usage:  "update cmdp version",
+		Action: UpdateAction,
+	}
 )
