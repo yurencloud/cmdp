@@ -297,6 +297,7 @@ func PullFileAction(ctx *cli.Context) {
 				return
 			}
 			fmt.Fprintf(color.Output, "%s | %s %s %s id:%s\n", green(file.Name), blue(file.Keyword), file.Comment, status, red(file.Id))
+			fmt.Println(file.Content)
 		}
 		color.Green(result.Message)
 	} else {
