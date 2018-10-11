@@ -41,7 +41,7 @@ func CreateCmdAction(ctx *cli.Context) {
 		Cmd:     content,
 		Comment: comment,
 		Keyword: keyword,
-		Private: ctx.Bool("private"),
+		Private: !ctx.Bool("public"),
 	}
 	result := Create(cmd)
 	fmt.Printf("content: %s\n", content)
@@ -70,7 +70,7 @@ func SearchAction(ctx *cli.Context) {
 	cmds := result.Data
 	length := len(cmds)
 	for i := 0; i < length; i++ {
-		status := ""
+		status := "public"
 		if cmds[i].Private {
 			status = magenta("private")
 		}
@@ -107,7 +107,7 @@ func ExecAction(ctx *cli.Context) {
 				fmt.Println(file.Content)
 				return
 			}
-			status := ""
+			status := "public"
 			if file.Private {
 				status = magenta("private")
 			}
@@ -133,7 +133,7 @@ func ExecAction(ctx *cli.Context) {
 				fmt.Println(cmd.Cmd)
 				return
 			}
-			status := ""
+			status := "public"
 			if cmd.Private {
 				status = magenta("private")
 			}
@@ -263,7 +263,7 @@ func PushFileAction(ctx *cli.Context) {
 		Content: string(fileContent),
 		Comment: comment,
 		Keyword: keyword,
-		Private: ctx.Bool("private"),
+		Private: !ctx.Bool("public"),
 	}
 	fileData.Close()
 	result := CreateFile(&file)
@@ -283,7 +283,7 @@ func PullFileAction(ctx *cli.Context) {
 
 	if result.Status == SUCCESS {
 		file := result.Data
-		status := ""
+		status := "public"
 		if file.Private {
 			status = "private"
 		}
@@ -324,7 +324,7 @@ func FindFileAction(ctx *cli.Context) {
 	files := result.Data
 	length := len(files)
 	for i := 0; i < length; i++ {
-		status := ""
+		status := "public"
 		if files[i].Private {
 			status = magenta("private")
 		}

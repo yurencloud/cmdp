@@ -268,9 +268,7 @@ cmdp c "docker start mysql"
 cmdp c "docker start mysql" dockerMysql "使用docker启动mysql容器"
 ~~~
 
-> 注意你创建的所有东西，默认都是公开的，请不要上传敏感内容，例如密码，私钥等
-
-如果你要创建非公开的，私密的内容请添加参数 --private,-p
+> 安全：你创建的所有东西，默认都是隐私的，保密的，只有你可见，若想公开，可以添加--public,-p参数
 
 ```
 cmdp c "docker start mysql" -p
@@ -314,6 +312,7 @@ cmdp exec KEYWORD [exec,e]
 // 执行自己创建的命令
 cmdp e dockerMysql
 // 执行他人创建的命令,注意，因为执行他人命令是一件非常危险的事情，所以默认只是显示文本，若想执行，需要添加--force,-F参数
+// 只有他人公开的内容，你才可见
 cmdp e tom/dockerMysql --force
 ```
 
@@ -335,9 +334,7 @@ cmdp p test.sh
 cmdp p test.sh test "快速单元测试"
 ```
 
-> 注意你创建的所有东西，默认都是公开的，请不要上传敏感内容，例如密码，私钥等
-
-如果你要创建非公开的，私密的内容请添加参数 --private,-p
+> 安全：你创建的所有东西，默认都是隐私的，保密的，只有你可见，若想公开，可以添加--public,-p参数
 
 ```
 cmdp p test.sh -p
@@ -402,6 +399,7 @@ cmdp exec KEYWORD [exec,e]
 // 执行自己创建的单个文件命令（单个文件内容得是可执行命令）,注意添加--file,-f参数，默认是执行单行文本命令
 cmdp e dockerMysql -f
 // 执行他人创建的单个文件命令,注意，因为执行他人命令是一件非常危险的事情，所以默认只是显示单个文件的文本，若想执行，需要添加--force,-F参数
+// 只有他人公开的文件才可下载或执行
 cmdp e tom/dockerMysql -f --force
 ```
 

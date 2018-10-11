@@ -44,8 +44,8 @@ var (
 		Action:  CreateCmdAction,
 		Flags: []cli.Flag{
 			cli.BoolFlag{
-				Name:  "private,p",
-				Usage: "set private",
+				Name:  "public,p",
+				Usage: "set public",
 			},
 		},
 	}
@@ -110,8 +110,8 @@ var (
 		Action:  PushFileAction,
 		Flags: []cli.Flag{
 			cli.BoolFlag{
-				Name:  "private,p",
-				Usage: "set private",
+				Name:  "public,p",
+				Usage: "set public",
 			},
 		},
 	}
