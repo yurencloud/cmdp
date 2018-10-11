@@ -183,4 +183,26 @@ var (
 		Usage:  "update cmdp version",
 		Action: UpdateAction,
 	}
+	UserCommand = cli.Command{
+		Name:    "user",
+		Aliases: []string{"u"},
+		Usage:   "search users, order by stars count desc, cmds count desc, files count desc",
+		Action:  UserAction,
+		Flags: []cli.Flag{
+			cli.IntFlag{
+				Name:  "page,p",
+				Usage: "set page number",
+				Value: 1,
+			},
+			cli.IntFlag{
+				Name:  "size,s",
+				Usage: "set page size",
+				Value: 20,
+			},
+			cli.BoolFlag{
+				Name:  "all,a",
+				Usage: "get all users list",
+			},
+		},
+	}
 )

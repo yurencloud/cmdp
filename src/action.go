@@ -402,3 +402,36 @@ func UpdateAction(ctx *cli.Context) {
 		return
 	}
 }
+
+func UserAction(ctx *cli.Context) {
+	page := ctx.Int("page")
+	size := ctx.Int("size")
+	var result UsersRespond
+	if ctx.Bool("all") || len(ctx.Args()) == 0 {
+		result = SearchUser(page, size, "")
+	} else {
+		result = SearchUser(page, size, ctx.Args()[0])
+	}
+
+	green := color.New(color.FgGreen).SprintFunc()
+	blue := color.New(color.FgBlue).SprintFunc()
+	red := color.New(color.FgRed).SprintFunc()
+	cyan := color.New(color.FgCyan).SprintFunc()
+	magenta := color.New(color.FgMagenta).SprintFunc()
+
+	users := result.Data
+	length := len(users)
+	for i := 0; i < length; i++ {
+		fmt.Fprintf(color.Output, "%-24s | star: %v, cmds: %v, files: %v %s\n", green(users[i].Username), cyan(users[i].StarCount), red(users[i].CmdCount), magenta(users[i].FileCount), blue(users[i].Info))
+	}
+	if result.Status == SUCCESS {
+		total, _ := strconv.Atoi(result.Message)
+		var totalPage float64 = 0
+		if total != 0 {
+			totalPage = math.Ceil(float64(total) / float64(size))
+		}
+		fmt.Fprintf(color.Output, "total:%v, size:%v, page:%v/%v\n", total, size, page, totalPage)
+	} else {
+		color.Red(result.Message)
+	}
+}

@@ -31,3 +31,12 @@ type Cmd struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
+
+type UserResult struct {
+	Username  string
+	Info      string
+	CreatedAt time.Time
+	CmdCount  int
+	FileCount int
+	StarCount int
+}

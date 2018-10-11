@@ -28,6 +28,11 @@ type FilesRespond struct {
 	Message string
 	Data    []File
 }
+type UsersRespond struct {
+	Status  string
+	Message string
+	Data    []UserResult
+}
 type FilesDownloadRespond struct {
 	Status  string
 	Message string

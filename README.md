@@ -17,9 +17,6 @@ cmdp相当于man，可以制作和查看各种语言的help
 cmdp相当于小云盘，可以储存1行文字或1个文件
 
 
-
-## 
-
 #### 功能
 
 ##### 单行文本 (command,code,path,content...)
@@ -259,6 +256,69 @@ cmdp reset NEW_PASSWORD
 cmdp reset 654321
 ```
 
+#### 搜索已经注册的所有用户！！
+
+搜索结果按star,cmds,files数量依次排序
+
+其中cmds,files仅统计公开的数量
+
+```
+cmdp user KEYWORD(可选) [user,u]
+
+// 搜索所有用户
+cmdp u
+
+// 搜索用户简介info中，包含shell的用户，他可能精通shell
+cmdp u shell
+
+// 搜索指定用户名的用户，比如cmdp作者mackwang
+cmdp u mackwang
+```
+
+![image](http://cloud.yurencloud.com/index.php/s/0MBRPyLG0zM3Cet/download)
+
+> 搜索这些用户干什么用呢？
+
+比如你想获取大量和docker有关的命令或文件
+
+你就可以先搜索
+
+```
+cmdp u docker
+```
+
+
+
+然后根据排名，关注第一个用户，例如叫mackwang
+
+```
+cmdp star mackwang
+```
+
+
+
+然后查看他的所有的cmds和files，这样你就可以直接使用他的所有公开的命令或文件啦
+
+```
+// 注意，/符号不能少，符号左边是用户名，符号右边是关键词，留空时，默认搜索全部
+cmdp s mackwang/
+cmdp f mackwang/
+```
+
+
+
+其他参数
+
+```
+--page,-p 设置页数
+
+--size,-s 设置每页显示条数，默认20
+
+--all,-a 显示全部
+```
+
+
+
 #### 添加单行文本
 
 ~~~
@@ -301,7 +361,9 @@ total:2, size:20, page:1/1
 ```
 // CONTENT中如果包含"/"符号的，左边为他人用户名，右边为搜索内容
 // 只会显示他人公开的内容
-cmdp s mack/docker
+cmdp s mackwang/docker
+// 搜索他人的全部内容, 右边为空即可
+cmdp s mackwang/
 ```
 
 #### 执行单行文本命令
@@ -369,7 +431,9 @@ total:2, size:20, page:1/1
 ```
 // CONTENT中如果包含"/"符号的，左边为他人用户名，右边为搜索内容
 // 只会显示他人公开的内容
-cmdp f mack/dockerfile
+cmdp f mackwang/dockerfile
+// 搜索他人的全部内容, 右边为空即可
+cmdp s mackwang/
 ```
 
 #### 下载单个文件

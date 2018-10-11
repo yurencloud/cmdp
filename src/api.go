@@ -126,3 +126,10 @@ func SearchStar(page int, size int) StarsRespond {
 	json.Unmarshal(body, &result)
 	return result
 }
+
+func SearchUser(page int, size int, keyword string) UsersRespond {
+	result := UsersRespond{}
+	body := Http("POST", "/user/search", "page="+strconv.Itoa(page)+"&size="+strconv.Itoa(size)+"&keyword="+keyword)
+	json.Unmarshal(body, &result)
+	return result
+}
