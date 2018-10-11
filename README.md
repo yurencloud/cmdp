@@ -192,7 +192,7 @@ USAGE:
    cmdp [global options] command [command options] [arguments...]
 
 VERSION:
-   2.0.0
+   2.1.0
 
 COMMANDS:
      search, s       search command, code, account, text, etc.
@@ -211,6 +211,7 @@ COMMANDS:
      remove, r       remove your remote file by id
      star            star other user
      update          update cmdp version
+     user, u         search users, order by stars count desc, cmds count desc, files count desc
      help, h         Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
