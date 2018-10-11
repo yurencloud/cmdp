@@ -2,7 +2,23 @@
 
 ![demo](http://cloud.yurencloud.com/index.php/s/pCYZvM1AFJGtdeW/download)
 
-## 怕大家不明白这东西干什么用，你就当cmdp是git部分功能的缩小版，可以搜索，记录，提交，上传，下载，执行自己的或他人的1行文字，或者1个文件。
+
+
+#### 简介
+
+cmdp相当于git中的一个小功能，可以可以搜索，记录，提交，上传，下载，执行自己的或他人的1行文字，或者1个文件
+
+cmdp相当于wget，可以下载1个文件，可以通过关键词，下载1个文件
+
+cmdp相当于alias，可以记录大量的命令别名，远程同步，只要登录cmdp账号，就可以使用和执行自己或他人的命令别名
+
+cmdp相当于man，可以制作和查看各种语言的help
+
+cmdp相当于小云盘，可以储存1行文字或1个文件
+
+
+
+## 
 
 #### 功能
 
@@ -131,19 +147,35 @@ cmdp l xiaoming/config.json
 
 ### 安装
 
-#### 若你已经安装go
-可直接使用下面命令安装
+#### 方式一：go安装
+
+先安装golang
+
+然后，可直接使用下面命令安装
 ~~~
 go get github.com/yurencloud/cmdp
 ~~~
 
-#### 下载安装
+#### 方式二：直接下载
 
-> 建议尽量先安装golang，然后使用`go get github.com/yurencloud/cmdp`命令安装
+> 建议尽量先安装golang，然后使用`go get github.com/yurencloud/cmdp`命令安装，这样无需设置环境变量或执行权限等问题
 
-`待工具使用稳定后再提供下载地址，请先使用go安装`
+点击[下载地址](http://cloud.yurencloud.com/index.php/s/hIkFkVraJmZmtmZ)
 
-工具可以直接使用，但建议将命令工具所在目录添加到系统路径`PATH`中
+解压后，工具可以直接使用，但建议将命令工具所在目录添加到系统路径`PATH`中
+
+```
+//windows
+设置环境变量
+点击Path，编辑
+假设cmdp在C:\tool\cmdp，只要在Path中添加一条C:\tool
+
+//linux,mac
+假设cmdp在/home/tool/cmdp
+vi ~/.bash_profile 或.bashrc
+添加export PATH=$PATH:/home/tool
+source ~/.bash_profile
+```
 
 在mac或linux若出现`Permission denied`问题，请用下面方法添加可执行权限
 ~~~
@@ -181,6 +213,7 @@ COMMANDS:
      find, f         find your files from remote by keyword
      remove, r       remove your remote file by id
      star            star other user
+     update          update cmdp version
      help, h         Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
@@ -353,6 +386,14 @@ cmdp l tom/dockerfile
 默认会下载到当前目录
 ```
 
+仅打印文件内容，不下载
+
+```
+cmdp l dockerfile -p
+```
+
+
+
 #### 执行单个文件命令
 
 ```
@@ -395,5 +436,11 @@ cmdp star
 cmdp star -d ID
 // 示例
 cmdp start -d 12
+```
+
+####  快速升级cmdp到最新版本
+
+```
+cmdp update
 ```
 
