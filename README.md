@@ -162,16 +162,15 @@ go get github.com/yurencloud/cmdp
 若正常输出版本号，即为安装成功`cmdp version 2.0.0`
 
 ```
-wget http://cloud.yurencloud.com/index.php/s/eoHfVmmx359rZdN/download -O cmdp.tar.gz && tar -zxvf cmdp.tar.gz && rm -rf cmdp.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
+wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux.tar.gz && tar -zxvf cmdp.linux.tar.gz && rm -rf cmdp.linux.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
 ```
 
 
 
 #### 方式二：直接下载
-
 > 建议尽量先安装golang，然后使用`go get github.com/yurencloud/cmdp`命令安装，这样无需设置环境变量或执行权限等问题
 
-点击[下载地址](http://cloud.yurencloud.com/index.php/s/hIkFkVraJmZmtmZ)
+点击[下载地址](https://github.com/yurencloud/cmdp/releases)
 
 解压后，工具可以直接使用，但建议将命令工具所在目录添加到系统路径`PATH`中
 
