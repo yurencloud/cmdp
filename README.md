@@ -162,8 +162,7 @@ go get github.com/yurencloud/cmdp
 若正常输出版本号，即为安装成功`cmdp version 2.0.0`
 
 ```
-wget http://cloud.yurencloud.com/index.php/s/eoHfVmmx359rZdN/download -O cmdp.tar.gz && tar
-  -zxvf cmdp.tar.gz && rm -rf cmdp.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
+wget http://cloud.yurencloud.com/index.php/s/eoHfVmmx359rZdN/download -O cmdp.tar.gz && tar -zxvf cmdp.tar.gz && rm -rf cmdp.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
 ```
 
 
