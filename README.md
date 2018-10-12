@@ -153,6 +153,21 @@ cmdp l xiaoming/config.json
 go get github.com/yurencloud/cmdp
 ~~~
 
+
+
+#### 方式二: wget 直接安装 （仅限linux）
+
+以管理员身份执行下述命令
+
+若正常输出版本号，即为安装成功`cmdp version 2.0.0`
+
+```
+wget http://cloud.yurencloud.com/index.php/s/eoHfVmmx359rZdN/download -O cmdp.tar.gz && tar
+  -zxvf cmdp.tar.gz && rm -rf cmdp.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
+```
+
+
+
 #### 方式二：直接下载
 
 > 建议尽量先安装golang，然后使用`go get github.com/yurencloud/cmdp`命令安装，这样无需设置环境变量或执行权限等问题
