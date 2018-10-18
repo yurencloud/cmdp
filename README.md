@@ -166,7 +166,7 @@ wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux.tar.
 ```
 32位
 ```
-wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux32.tar.gz && tar -zxvf cmdp.linux32.tar.gz && rm -rf cmdp.linux.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
+wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux32.tar.gz && tar -zxvf cmdp.linux32.tar.gz && rm -rf cmdp.linux32.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
 ```
 
 
