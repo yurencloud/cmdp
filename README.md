@@ -159,7 +159,7 @@ go get github.com/yurencloud/cmdp
 
 以管理员身份执行下述命令
 
-若正常输出版本号，即为安装成功`cmdp version 2.0.0`
+若正常输出版本号，即为安装成功`cmdp version 2.0.0`  
 64位
 ```
 wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux.tar.gz && tar -zxvf cmdp.linux.tar.gz && rm -rf cmdp.linux.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
