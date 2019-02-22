@@ -258,13 +258,17 @@ func PushFileAction(ctx *cli.Context) {
 		keyword = fileData.Name()
 	}
 
+	fileNameSplit := strings.Split(fileData.Name(), "/")
+	fileName := fileNameSplit[len(fileNameSplit)-1]
+
 	file := File{
-		Name:    fileData.Name(),
+		Name:    fileName,
 		Content: string(fileContent),
 		Comment: comment,
 		Keyword: keyword,
 		Private: !ctx.Bool("public"),
 	}
+
 	fileData.Close()
 	result := CreateFile(&file)
 	fmt.Printf("file path: %s\n", filePath)
