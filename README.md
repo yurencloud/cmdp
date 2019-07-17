@@ -1,6 +1,88 @@
-## cmdp 命令行和单文件快速提示、上传、下载、执行工具（远程同步）
+## Shell脚本命令跨平台收藏、搜索和同步
+#### 安装
+
+##### 使用go安装cmdp
+
+先安装golang。然后，可直接使用下面命令安装。
+
+```
+go get github.com/yurencloud/cmdp
+```
+
+使用wget安装或直接下载安装`见下文`
+
+
+
+#### 快速使用
+
+搜索自己收藏的所有和mysql相关的shell命令或脚本文件`全文模糊搜索`
+
+```
+cmdp s mysql
+```
+
+```shell
+*** 输出 ***
+docker exec -it mysql bash |  docker进入mysql容器 private id:9
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASWORD -d mysql | docker-mysql docker快速创建mysql容器 public id:120
+...
+```
+
+快速执行创建docker mysql 容器命令
+
+```shell
+cmdp e docker-mysql
+// 相当于执行 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASWORD -d mysql
+```
 
 ![demo](http://cloud.yurencloud.com/index.php/s/pCYZvM1AFJGtdeW/download)
+
+
+
+#### 其他安装方式
+
+##### wget 直接安装 （仅限linux）
+
+64位
+
+```
+wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux.tar.gz && tar -zxvf cmdp.linux.tar.gz && rm -rf cmdp.linux.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
+```
+
+32位
+
+```
+wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux32.tar.gz && tar -zxvf cmdp.linux32.tar.gz && rm -rf cmdp.linux32.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
+```
+
+若正常输出版本号，即为安装成功`cmdp version 2.0.0`
+
+
+
+##### 直接下载工具
+
+点击[下载地址](https://github.com/yurencloud/cmdp/releases)
+
+解压后，工具可以直接使用，但建议将命令工具所在目录添加到系统路径`PATH`中
+
+```
+//windows
+设置环境变量
+点击Path，编辑
+假设cmdp在C:\tool\cmdp，只要在Path中添加一条C:\tool
+
+//linux,mac
+假设cmdp在/home/tool/cmdp
+vi ~/.bash_profile 或.bashrc
+添加export PATH=$PATH:/home/tool
+source ~/.bash_profile
+```
+
+在mac或linux若出现`Permission denied`问题，请用下面方法添加可执行权限
+
+```
+chmod +x cmdp
+```
 
 
 
@@ -141,60 +223,6 @@ cmdp l xiaoming/config.json
 等等
 
 
-
-### 安装
-
-#### 方式一：go安装
-
-先安装golang
-
-然后，可直接使用下面命令安装
-~~~
-go get github.com/yurencloud/cmdp
-~~~
-
-
-
-#### 方式二: wget 直接安装 （仅限linux）
-
-以管理员身份执行下述命令
-
-若正常输出版本号，即为安装成功`cmdp version 2.0.0`  
-64位
-```
-wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux.tar.gz && tar -zxvf cmdp.linux.tar.gz && rm -rf cmdp.linux.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
-```
-32位
-```
-wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux32.tar.gz && tar -zxvf cmdp.linux32.tar.gz && rm -rf cmdp.linux32.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
-```
-
-
-
-#### 方式二：直接下载
-> 建议尽量先安装golang，然后使用`go get github.com/yurencloud/cmdp`命令安装，这样无需设置环境变量或执行权限等问题
-
-点击[下载地址](https://github.com/yurencloud/cmdp/releases)
-
-解压后，工具可以直接使用，但建议将命令工具所在目录添加到系统路径`PATH`中
-
-```
-//windows
-设置环境变量
-点击Path，编辑
-假设cmdp在C:\tool\cmdp，只要在Path中添加一条C:\tool
-
-//linux,mac
-假设cmdp在/home/tool/cmdp
-vi ~/.bash_profile 或.bashrc
-添加export PATH=$PATH:/home/tool
-source ~/.bash_profile
-```
-
-在mac或linux若出现`Permission denied`问题，请用下面方法添加可执行权限
-~~~
-chmod +x cmdp
-~~~
 
 
 
@@ -523,4 +551,3 @@ cmdp start -d 12
 ```
 cmdp update
 ```
-
