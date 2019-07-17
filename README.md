@@ -84,148 +84,6 @@ source ~/.bash_profile
 chmod +x cmdp
 ```
 
-
-
-#### 简介
-
-cmdp相当于git中的一个小功能，可以可以搜索，记录，提交，上传，下载，执行自己的或他人的1行文字，或者1个文件
-
-cmdp相当于wget，可以下载1个文件，可以通过关键词，下载1个文件
-
-cmdp相当于alias，可以记录大量的命令别名，远程同步，只要登录cmdp账号，就可以使用和执行自己或他人的命令别名
-
-cmdp相当于man，可以制作和查看各种语言的help
-
-cmdp相当于小云盘，可以储存1行文字或1个文件
-
-
-#### 功能
-
-##### 单行文本 (command,code,path,content...)
-
-- 上传记录命令，代码，路径，文本等，并可添加关键词，注释。
-- 搜索自己或他人添加的命令，代码，路径，文本等。（支持全局模糊搜索，包括内容，关键词，注释）
-- 快速执行自己或他人添加的命令。
-
-##### 单个文件(.yaml.md,.txt,.sh,.js,.java,.py,.php,Vagrantfile,Dockerfile...)
-
-- 上传单个文件，并可添加关键词，注释。
-- 搜索自己或他人上传的单个文件。（支持全局模糊搜索，包括关键词，注释）
-- 下载自己或他人上传的单个文件。（根据关键词）
-- 快速执行自己或他人文件命令。（文件内容是命令时）
-
-
-
-#### 使用场景
-
-> 如果你也经常遇到下述场景，那么cmdp，就可以帮助你快速解决此类问题，并且会成为你经常使用的一个命令行工具！
-
-命令行参数太多，太难记，平常可能会为了1条命令，新建一个笔记，来记录，查询麻烦。
-
-```
-// 快速创建笔记，并自己上传此命令到你的账号中
-cmdp c "docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=secret -d mysql" mysql
-
-// 搜索和mysql相关的所有命令
-cmdp s mysql
-
-// 快速执行
-// 相当于执行了docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=secret -d mysql
-cmdp e mysql
-
-// 如果自己不想创建笔记，可以直接搜索或者立即执行官方或其他大神创建的笔记
-cmdp s docker/mysql
-cmdp s dashen/mysql
-cmdp e docker/mysql 
-cmdp e dashen/mysql
-```
-
-经常要在云盘或笔记中收藏各种shell脚本，bash命令，没有地方快速收藏，快速执行。
-
-```
-// 上传shell脚本文件
-cmdp p my.sh
-// 上传markdown笔记文件
-cmdp p my.md
-// 上传单个代码文件，比如全国城市村镇的json
-cmdp p country.json
-
-// 搜索所有和mysql相关的我的文件
-cmdp f mysql
-
-// 执行shell脚本文件
-cmdp e my.sh
-// 下载markdown笔记文件
-cmdp l my.md
-// 下载全国城市村镇的json
-cmdp l country.json
-
-// 如果自己不想上传文件，可以直接搜索或者下载或者立即执行官方或其他dashen上传的文件
-cmdp s office/a.sh
-```
-
-虽然linux有ctrl+R查询，但对于经常创建linux系统，使用不同的服务器，不同的电脑的人来说，命令提示不能同步到所有电脑。
-
-```
-// 搜索如何解压tar文件命令
-cmdp s tar 
-
-// 搜索如何快速显示所有目录的总大小命令
-cmdp s du
-
-// 搜索自己创建的docker命令
-cmdp s docker
-```
-
-docker创建容器的命令太长，规则太多。经常需要在笔记中记录如何创建，或者记录下命令。
-
-```
-// 搜索自己创建并记录的所有和docker相关的命令
-cmdp s docker
-// 直接执行命令，创建mysql容器
-cmdp e dockerMysql
-```
-
-Dockerfile，docker-compose.yaml等容器配置文件，如果想多台电脑通用，总是得收藏，或放到云盘，或多台电脑同步文件
-
-```
-// 下载java spring服务器容器的Dockerfile
-cmdp l java
-// 下载官方或dashen上传的java spring服务器容器的Dockerfile
-cmdp l office/java
-cmdp l dashen/java
-```
-
-Vagrantfile容器文件经常要放到自己的云盘
-
-```
-// 下载适用windows的hyperV专用的centos7的Vagrantfile
-// 并启动容器
-cmdp l centos7 && vagrant up
-```
-
-.gitignore.npmignore,package.json,各种config文件，经常要复制，粘贴
-
-```
-// 下载自己的.gitgnore文件
-cmdp l .git
-
-// 下载官方或dashen提供的.gitgnore文件
-cmdp l dashen/.gitgnore
-```
-
-经常要分享同一个文件，配置文件给不同的同事或合作伙伴。
-
-```
-cmdp l xiaoming/config.json
-```
-
-等等
-
-
-
-
-
 ### 快速使用
 
 ```
@@ -551,3 +409,146 @@ cmdp start -d 12
 ```
 cmdp update
 ```
+
+
+#### 简介
+
+cmdp相当于git中的一个小功能，可以可以搜索，记录，提交，上传，下载，执行自己的或他人的1行文字，或者1个文件
+
+cmdp相当于wget，可以下载1个文件，可以通过关键词，下载1个文件
+
+cmdp相当于alias，可以记录大量的命令别名，远程同步，只要登录cmdp账号，就可以使用和执行自己或他人的命令别名
+
+cmdp相当于man，可以制作和查看各种语言的help
+
+cmdp相当于小云盘，可以储存1行文字或1个文件
+
+
+#### 功能
+
+##### 单行文本 (command,code,path,content...)
+
+- 上传记录命令，代码，路径，文本等，并可添加关键词，注释。
+- 搜索自己或他人添加的命令，代码，路径，文本等。（支持全局模糊搜索，包括内容，关键词，注释）
+- 快速执行自己或他人添加的命令。
+
+##### 单个文件(.yaml.md,.txt,.sh,.js,.java,.py,.php,Vagrantfile,Dockerfile...)
+
+- 上传单个文件，并可添加关键词，注释。
+- 搜索自己或他人上传的单个文件。（支持全局模糊搜索，包括关键词，注释）
+- 下载自己或他人上传的单个文件。（根据关键词）
+- 快速执行自己或他人文件命令。（文件内容是命令时）
+
+---
+
+#### 使用场景
+
+> 如果你也经常遇到下述场景，那么cmdp，就可以帮助你快速解决此类问题，并且会成为你经常使用的一个命令行工具！
+
+命令行参数太多，太难记，平常可能会为了1条命令，新建一个笔记，来记录，查询麻烦。
+
+```
+// 快速创建笔记，并自己上传此命令到你的账号中
+cmdp c "docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=secret -d mysql" mysql
+
+// 搜索和mysql相关的所有命令
+cmdp s mysql
+
+// 快速执行
+// 相当于执行了docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=secret -d mysql
+cmdp e mysql
+
+// 如果自己不想创建笔记，可以直接搜索或者立即执行官方或其他大神创建的笔记
+cmdp s docker/mysql
+cmdp s dashen/mysql
+cmdp e docker/mysql 
+cmdp e dashen/mysql
+```
+
+经常要在云盘或笔记中收藏各种shell脚本，bash命令，没有地方快速收藏，快速执行。
+
+```
+// 上传shell脚本文件
+cmdp p my.sh
+// 上传markdown笔记文件
+cmdp p my.md
+// 上传单个代码文件，比如全国城市村镇的json
+cmdp p country.json
+
+// 搜索所有和mysql相关的我的文件
+cmdp f mysql
+
+// 执行shell脚本文件
+cmdp e my.sh
+// 下载markdown笔记文件
+cmdp l my.md
+// 下载全国城市村镇的json
+cmdp l country.json
+
+// 如果自己不想上传文件，可以直接搜索或者下载或者立即执行官方或其他dashen上传的文件
+cmdp s office/a.sh
+```
+
+虽然linux有ctrl+R查询，但对于经常创建linux系统，使用不同的服务器，不同的电脑的人来说，命令提示不能同步到所有电脑。
+
+```
+// 搜索如何解压tar文件命令
+cmdp s tar 
+
+// 搜索如何快速显示所有目录的总大小命令
+cmdp s du
+
+// 搜索自己创建的docker命令
+cmdp s docker
+```
+
+docker创建容器的命令太长，规则太多。经常需要在笔记中记录如何创建，或者记录下命令。
+
+```
+// 搜索自己创建并记录的所有和docker相关的命令
+cmdp s docker
+// 直接执行命令，创建mysql容器
+cmdp e dockerMysql
+```
+
+Dockerfile，docker-compose.yaml等容器配置文件，如果想多台电脑通用，总是得收藏，或放到云盘，或多台电脑同步文件
+
+```
+// 下载java spring服务器容器的Dockerfile
+cmdp l java
+// 下载官方或dashen上传的java spring服务器容器的Dockerfile
+cmdp l office/java
+cmdp l dashen/java
+```
+
+Vagrantfile容器文件经常要放到自己的云盘
+
+```
+// 下载适用windows的hyperV专用的centos7的Vagrantfile
+// 并启动容器
+cmdp l centos7 && vagrant up
+```
+
+.gitignore.npmignore,package.json,各种config文件，经常要复制，粘贴
+
+```
+// 下载自己的.gitgnore文件
+cmdp l .git
+
+// 下载官方或dashen提供的.gitgnore文件
+cmdp l dashen/.gitgnore
+```
+
+经常要分享同一个文件，配置文件给不同的同事或合作伙伴。
+
+```
+cmdp l xiaoming/config.json
+```
+
+等等
+
+
+
+
+
+
