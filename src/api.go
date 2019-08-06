@@ -14,6 +14,13 @@ func Create(cmd Cmd) Respond {
 	return result
 }
 
+func ForkCmd(keyword string) Respond {
+	result := Respond{}
+	body := Http("POST", "/cmdp/fork", "keyword="+keyword)
+	json.Unmarshal(body, &result)
+	return result
+}
+
 func Search(keyword string, page int, size int) CmdsRespond {
 	result := CmdsRespond{}
 	body := Http("POST", "/cmdp/search", "keyword="+keyword+"&page="+strconv.Itoa(page)+"&size="+strconv.Itoa(size))
@@ -41,6 +48,13 @@ func CreateFile(file *File) Respond {
 	result := Respond{}
 	fileJson, _ := json.Marshal(file)
 	body := HttpJson("POST", "/file/create", fileJson)
+	json.Unmarshal(body, &result)
+	return result
+}
+
+func ForkFile(keyword string) Respond {
+	result := Respond{}
+	body := Http("POST", "/file/fork", "keyword="+keyword)
 	json.Unmarshal(body, &result)
 	return result
 }

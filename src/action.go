@@ -50,6 +50,21 @@ func CreateCmdAction(ctx *cli.Context) {
 	printRespond(result)
 }
 
+func ForkCmdAction(ctx *cli.Context) {
+	var keyword string
+	args := ctx.Args()
+
+	if len(args) == 0 {
+		color.Red("please input keyword")
+		return
+	} else {
+		keyword = args[0]
+	}
+
+	result := ForkCmd(keyword)
+	printRespond(result)
+}
+
 // cmd
 func SearchAction(ctx *cli.Context) {
 	page := ctx.Int("page")
@@ -198,6 +213,7 @@ func LoginAction(ctx *cli.Context) {
 		return
 	}
 	CreateToken(result.Data)
+	result.Message = "success"
 	printRespond(result)
 }
 
@@ -274,6 +290,21 @@ func PushFileAction(ctx *cli.Context) {
 	fmt.Printf("file path: %s\n", filePath)
 	fmt.Printf("keyword: %s\n", keyword)
 	fmt.Printf("comment: %s\n", comment)
+	printRespond(result)
+}
+
+func ForkFileAction(ctx *cli.Context) {
+	var keyword string
+	args := ctx.Args()
+
+	if len(args) == 0 {
+		color.Red("please input keyword")
+		return
+	} else {
+		keyword = args[0]
+	}
+
+	result := ForkFile(keyword)
 	printRespond(result)
 }
 

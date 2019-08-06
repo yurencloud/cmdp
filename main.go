@@ -18,6 +18,7 @@ func main() {
 		src.CreateCmdCommand,
 		src.DeleteCmdCommand,
 		src.ExecCommand,
+		src.ForkCmdCommand,
 		// user
 		src.RegisterCommand,
 		src.LoginCommand,
@@ -29,10 +30,12 @@ func main() {
 		src.PullFileCommand,
 		src.FindFileCommand,
 		src.RemoveFileCommand,
+		src.ForkFileCommand,
 		// star
 		src.StarCommand,
 		src.UpdateCommand,
 		src.UserCommand,
+		src.StarListCommand,
 	}
 
 	err := app.Run(os.Args)

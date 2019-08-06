@@ -49,6 +49,12 @@ var (
 			},
 		},
 	}
+	ForkCmdCommand = cli.Command{
+		Name:    "forkcmd",
+		Aliases: []string{"fc"},
+		Usage:   "fork command, code, account, text, etc.",
+		Action:  ForkCmdAction,
+	}
 	DeleteCmdCommand = cli.Command{
 		Name:    "delete",
 		Aliases: []string{"d"},
@@ -115,6 +121,12 @@ var (
 			},
 		},
 	}
+	ForkFileCommand = cli.Command{
+		Name:    "forkfile",
+		Aliases: []string{"ff"},
+		Usage:   "fork file.",
+		Action:  ForkFileAction,
+	}
 	PullFileCommand = cli.Command{
 		Name:    "pull",
 		Aliases: []string{"l", "pl", "P"},
@@ -177,6 +189,12 @@ var (
 				Value: 0,
 			},
 		},
+	}
+	StarListCommand = cli.Command{
+		Name:    "starlist",
+		Aliases: []string{"sl"},
+		Usage:   "get star list",
+		Action:  StarListAction,
 	}
 	UpdateCommand = cli.Command{
 		Name:   "update",
