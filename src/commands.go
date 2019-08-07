@@ -188,13 +188,12 @@ var (
 				Usage: "delete a star",
 				Value: 0,
 			},
+			cli.StringFlag{
+				Name:  "keyword,k",
+				Usage: "search star by keyword",
+				Value: "",
+			},
 		},
-	}
-	StarListCommand = cli.Command{
-		Name:    "starlist",
-		Aliases: []string{"sl"},
-		Usage:   "get star list",
-		Action:  StarListAction,
 	}
 	UpdateCommand = cli.Command{
 		Name:   "update",
@@ -220,6 +219,10 @@ var (
 			cli.BoolFlag{
 				Name:  "all,a",
 				Usage: "get all users list",
+			},
+			cli.BoolFlag{
+				Name:  "official,o",
+				Usage: "get all official account list",
 			},
 		},
 	}

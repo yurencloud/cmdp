@@ -117,6 +117,9 @@ type StarUser struct {
 	UserId    int
 	Username  string    `orm:"size(255)"`
 	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
+	CmdCount  int
+	StarCount int
+	FileCount int
 	User      User
 }
 
@@ -134,16 +137,16 @@ func DeleteStar(id int) CmdsRespond {
 	return result
 }
 
-func SearchStar(page int, size int) StarsRespond {
+func SearchStar(page int, size int, keyword string) StarsRespond {
 	result := StarsRespond{}
-	body := Http("POST", "/star/search", "page="+strconv.Itoa(page)+"&size="+strconv.Itoa(size))
+	body := Http("POST", "/star/search", "page="+strconv.Itoa(page)+"&size="+strconv.Itoa(size)+"&keyword="+keyword)
 	json.Unmarshal(body, &result)
 	return result
 }
 
-func SearchUser(page int, size int, keyword string) UsersRespond {
+func SearchUser(page int, size int, keyword string, official string) UsersRespond {
 	result := UsersRespond{}
-	body := Http("POST", "/user/search", "page="+strconv.Itoa(page)+"&size="+strconv.Itoa(size)+"&keyword="+keyword)
+	body := Http("POST", "/user/search", "page="+strconv.Itoa(page)+"&size="+strconv.Itoa(size)+"&keyword="+keyword+"&official="+official)
 	json.Unmarshal(body, &result)
 	return result
 }

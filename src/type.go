@@ -3,8 +3,10 @@ package src
 import "time"
 
 type User struct {
+	Id        int
 	Username  string
 	Info      string
+	Official  bool
 	CreatedAt time.Time
 }
 

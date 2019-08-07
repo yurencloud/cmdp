@@ -9,7 +9,7 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = "cmdp"
-	app.Version = "2.1.0"
+	app.Version = "3.0.0"
 
 	app.Commands = []cli.Command{
 		// cmd
@@ -35,7 +35,6 @@ func main() {
 		src.StarCommand,
 		src.UpdateCommand,
 		src.UserCommand,
-		src.StarListCommand,
 	}
 
 	err := app.Run(os.Args)

@@ -103,6 +103,38 @@ func SearchAction(ctx *cli.Context) {
 	}
 }
 
+func insertParams(content string, args []string) string {
+	if len(args) == 1 {
+		return content
+	}
+	args = args[1:]
+	// 优先把具名变量填入，再依次填入匿名参数
+	var nameVar []string
+	var anonymousVar []string
+	for i := 0; i < len(args); i++ {
+		if strings.Contains(args[i], "=") {
+			nameVar = append(nameVar, args[i])
+		} else {
+			anonymousVar = append(anonymousVar, args[i])
+		}
+	}
+	// 先替换具名参数
+	var nameAndValue []string
+	for i := 0; i < len(nameVar); i++ {
+		nameAndValue = strings.Split(nameVar[i], "=")
+		reg := regexp.MustCompile(`{{\s*` + nameAndValue[0] + `\s*}}`)
+		content = reg.ReplaceAllString(content, nameAndValue[1])
+	}
+
+	// 再替换匿名参数
+	reg := regexp.MustCompile(`{{\s*[[:alnum:]]*\s*}}`)
+	results := reg.FindAllString(content, -1)
+	for i := 0; i < len(anonymousVar); i++ {
+		content = strings.Replace(content, results[i], anonymousVar[i], 1)
+	}
+	return content
+}
+
 func ExecAction(ctx *cli.Context) {
 	keyword := ctx.Args()[0]
 	if len(keyword) == 0 {
@@ -127,6 +159,8 @@ func ExecAction(ctx *cli.Context) {
 				status = magenta("private")
 			}
 			fmt.Fprintf(color.Output, "%s | %s %s %s id:%s\n", green(file.Name), blue(file.Keyword), cyan(file.Comment), status, red(file.Id))
+			// 在执行之前，替换占位参数
+			result.Data.Content = insertParams(result.Data.Content, ctx.Args())
 			output, err := Exec(result.Data.Content)
 			if err != nil {
 				color.Red("exec fail")
@@ -153,6 +187,8 @@ func ExecAction(ctx *cli.Context) {
 				status = magenta("private")
 			}
 			fmt.Fprintf(color.Output, "%s | %s %s %s id:%s\n", green(cmd.Cmd), blue(cmd.Keyword), cyan(cmd.Comment), status, red(cmd.Id))
+			// 在执行之前，替换占位参数
+			result.Data.Cmd = insertParams(result.Data.Cmd, ctx.Args())
 			output, err := Exec(result.Data.Cmd)
 			if err != nil {
 				color.Red("error")
@@ -197,6 +233,7 @@ func RegisterAction(ctx *cli.Context) {
 		return
 	}
 	CreateToken(result.Data)
+	result.Message = "success"
 	printRespond(result)
 }
 
@@ -401,17 +438,19 @@ func StarAction(ctx *cli.Context) {
 		if len(ctx.Args()) == 0 {
 			page := ctx.Int("page")
 			size := ctx.Int("size")
-			result := SearchStar(page, size)
+			keyword := ctx.String("keyword")
+			result := SearchStar(page, size, keyword)
 
 			green := color.New(color.FgGreen).SprintFunc()
 			blue := color.New(color.FgBlue).SprintFunc()
 			cyan := color.New(color.FgCyan).SprintFunc()
 			red := color.New(color.FgRed).SprintFunc()
+			magenta := color.New(color.FgMagenta).SprintFunc()
 
 			stars := result.Data
 			length := len(stars)
 			for i := 0; i < length; i++ {
-				fmt.Fprintf(color.Output, "%s | %s %s id:%s\n", green(stars[i].User.Username), blue(stars[i].User.Info), cyan(stars[i].User.CreatedAt.Format("2006-01")), red(stars[i].StarId))
+				fmt.Fprintf(color.Output, "%s | %s %s | star: %v, cmds: %v, files: %v | id:%s\n", green(stars[i].User.Username), blue(stars[i].User.Info), cyan(stars[i].User.CreatedAt.Format("2006-01")), cyan(stars[i].StarCount), red(stars[i].CmdCount), magenta(stars[i].FileCount), red(stars[i].StarId))
 			}
 			if result.Status == SUCCESS {
 				total, _ := strconv.Atoi(result.Message)
@@ -441,11 +480,18 @@ func UpdateAction(ctx *cli.Context) {
 func UserAction(ctx *cli.Context) {
 	page := ctx.Int("page")
 	size := ctx.Int("size")
+	var official = ""
+
+	if ctx.Bool("official") {
+		official = "1"
+	} else {
+		official = "0"
+	}
 	var result UsersRespond
 	if ctx.Bool("all") || len(ctx.Args()) == 0 {
-		result = SearchUser(page, size, "")
+		result = SearchUser(page, size, "", official)
 	} else {
-		result = SearchUser(page, size, ctx.Args()[0])
+		result = SearchUser(page, size, ctx.Args()[0], official)
 	}
 
 	green := color.New(color.FgGreen).SprintFunc()
