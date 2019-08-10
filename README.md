@@ -18,7 +18,7 @@
   <a href="http://cmdp.yurencloud.com"  target="_blank">官方网站</a>
 </p>
 
-欢迎到官方上查看`官方推荐`、`用户排名`、`个人中心` 可以快速查看他人和自己的命令或文件，以及可视化创建命令及文件。
+欢迎到官方网站上查看`官方推荐`、`用户排名`、`个人中心` 可以快速查看他人和自己的命令或文件，以及可视化创建命令及文件。
 
 #### 一、安装
 
@@ -256,7 +256,7 @@ cmdp f mackwang/
 
 
 
-#### 添加单行文本
+#### 添加命令
 
 ~~~
 cmdp create CONTENT KEYWORD(可选) COMMENT(可选) [create,c]
@@ -271,7 +271,9 @@ cmdp c "docker start mysql" dockerMysql "使用docker启动mysql容器"
 cmdp c "docker start mysql" -p
 ```
 
-#### 搜索单行文本
+
+
+#### 搜索命令
 
 ~~~
 cmdp search CONTENT [search,s] 
@@ -293,7 +295,7 @@ total:2, size:20, page:1/1
 --all,-a 显示全部
 ```
 
-搜索他人的单行文本
+搜索他人的命令
 
 ```
 // CONTENT中如果包含"/"符号的，左边为他人用户名，右边为搜索内容
@@ -303,7 +305,9 @@ cmdp s mackwang/docker
 cmdp s mackwang/
 ```
 
-#### 执行单行文本命令
+
+
+#### 执行命令
 
 ```
 cmdp exec KEYWORD [exec,e]
@@ -311,17 +315,44 @@ cmdp exec KEYWORD [exec,e]
 // 执行自己创建的命令
 cmdp e dockerMysql
 // 执行他人创建的命令,注意，因为执行他人命令是一件非常危险的事情，所以默认只是显示文本，若想执行，需要添加--force,-F参数
-// 只有他人公开的内容，你才可见
+// 只有他人公开的内容，你才可见 [--force,-F]
 cmdp e tom/dockerMysql --force
 ```
 
-#### 删除单选文本
+
+
+#### 添加占位参数
+
+```bash
+{{PARAM_NAME}}
+# docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD={{password}} -d mysql
+# mysql -u{{username}} -p{{password}}
+```
+
+
+
+#### 执行命令时使用占位参数
+
+```
+// 如果mysql命令是mysql -u{{username}} -p{{password}}
+
+cmdp e mysql root 123456
+cmdp e mysql root password=123456
+cmdp e mysql username=root password=123456
+# 具名参数优先替换，然后匿名参数依次替换
+```
+
+
+
+#### 删除命令
 
 先查询，后根据结尾显示的id进行删除
 ~~~
 cmdp delete ID 
 cmdp d 14
 ~~~
+
+
 
 #### 上传单个文件
 
@@ -338,6 +369,8 @@ cmdp p test.sh test "快速单元测试"
 ```
 cmdp p test.sh -p
 ```
+
+
 
 #### 查找单个文件
 
@@ -373,6 +406,8 @@ cmdp f mackwang/dockerfile
 cmdp s mackwang/
 ```
 
+
+
 #### 下载单个文件
 
 ```
@@ -404,6 +439,18 @@ cmdp e dockerMysql -f
 cmdp e tom/dockerMysql -f --force
 ```
 
+
+
+#### 单个文件添加占位参数（添加方式和命令一样）
+
+```bash
+{{PARAM_NAME}}
+# docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD={{password}} -d mysql
+# mysql -u{{username}} -p{{password}}
+```
+
+
+
 #### 删除单个文件
 
 先查找，后根据结尾显示的id进行删除
@@ -413,6 +460,8 @@ cmdp remvoe ID [remove,r]
 cmdp r 14
 ```
 
+
+
 #### 关注或收藏他人（其他用户，组织，官方账号）
 
 ```
@@ -420,6 +469,8 @@ cmdp star USERNAME
 // 示例
 cmdp star mackwang
 ```
+
+
 
 #### fork他人的命令
 
@@ -432,6 +483,8 @@ cmdp forkcmd mackwang/mysql
 cmdp fc mackwang/mysql
 ```
 
+
+
 #### fork他人的文件
 
 fork是复制拷贝，所以即使他人删除此文件，你fork的文件仍然在。
@@ -443,7 +496,7 @@ cmdp forkfile mackwang/mysql.sh
 cmdp ff mackwang/mysql.sh
 ```
 
-#### 
+
 
 #### 显示所有的关注或收藏列表
 
@@ -451,6 +504,8 @@ cmdp ff mackwang/mysql.sh
 // 不添加任务参数，就会显示所有已关注或收藏的列表
 cmdp star
 ```
+
+
 
 #### 取消关注
 
@@ -461,6 +516,8 @@ cmdp star -d ID
 cmdp start -d 12
 ```
 
+
+
 ####  快速升级cmdp到最新版本
 
 ```
@@ -468,7 +525,8 @@ cmdp update
 ```
 
 
-#### 简介
+
+#### 三、简介
 
 cmdp相当于git中的一个小功能，可以可以搜索，记录，提交，上传，下载，执行自己的或他人的1行文字，或者1个文件
 
@@ -481,7 +539,8 @@ cmdp相当于man，可以制作和查看各种语言的help
 cmdp相当于小云盘，可以储存1行文字或1个文件
 
 
-#### 功能
+
+#### 四、功能
 
 ##### 单行文本 (command,code,path,content...)
 
@@ -498,7 +557,9 @@ cmdp相当于小云盘，可以储存1行文字或1个文件
 
 ---
 
-#### 使用场景
+
+
+#### 五、使用场景
 
 > 如果你也经常遇到下述场景，那么cmdp，就可以帮助你快速解决此类问题，并且会成为你经常使用的一个命令行工具！
 
