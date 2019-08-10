@@ -32,7 +32,7 @@
 go get github.com/yurencloud/cmdp
 ```
 
-方式3：支持shell脚本一键安装
+方式3：支持shell脚本一键安装（仅限linux平台）
 
 ```
 wget https://github.com/yurencloud/cmdp/releases/download/v3.0.0/cmdp.linux.v3.0.0.tar.gz && tar -zxvf cmdp.linux.v3.0.0.tar.gz && rm -rf cmdp.linux.v3.0.0.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version && echo "install success"
