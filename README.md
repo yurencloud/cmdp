@@ -1,90 +1,121 @@
-## Shell脚本命令跨平台收藏、搜索和同步
-#### 安装
 
-##### 使用go安装cmdp
 
-先安装golang。然后，可直接使用下面命令安装。
+
+<h2 align="center">cmdp</h2>
+<p align="center">Shell脚本命令文件跨平台收藏、搜索和同步</p>
+<p align="center">
+    <img src="https://img.shields.io/github/stars/yurencloud/cmdp.svg" alt="">
+    <img src="https://img.shields.io/github/issues/yurencloud/cmdp.svg" alt="">
+    <img src="https://img.shields.io/github/forks/yurencloud/cmdp.svg" alt="">
+    <img src="https://img.shields.io/github/license/yurencloud/cmdp.svg" alt="">
+</p>
+
+<p align="center">
+  <a href="https://cmdp.yurencloud.com/document" target="_blank">使用文档</a>
+  |
+  <a href="https://cmdp.yurencloud.com/document"  target="_blank">用户排名</a>
+  |
+  <a href="http://cmdp.yurencloud.com"  target="_blank">官方网站</a>
+</p>
+
+欢迎到官方上查看`官方推荐`、`用户排名`、`个人中心` 可以快速查看他人和自己的命令或文件，以及可视化创建命令及文件。
+
+#### 一、安装
+
+方式1：支持各平台直接下载使用
+
+[mac](https://github.com/yurencloud/cmdp/releases/download/v3.0.0/cmdp.mac.v3.0.0.tar.gz) | [windows](https://github.com/yurencloud/cmdp/releases/download/v3.0.0/cmdp.windows.v3.0.0.tar.gz) |[linux64](https://github.com/yurencloud/cmdp/releases/download/v3.0.0/cmdp.linux.v3.0.0.tar.gz) | [linux32](https://github.com/yurencloud/cmdp/releases/download/v3.0.0/cmdp.linux32.v3.0.0.tar.gz)
+
+方式2：支持go安装
 
 ```
 go get github.com/yurencloud/cmdp
 ```
 
-使用wget安装或直接下载安装`见下文`
+方式3：支持shell脚本一键安装
+
+```
+wget https://github.com/yurencloud/cmdp/releases/download/v3.0.0/cmdp.linux.v3.0.0.tar.gz && tar -zxvf cmdp.linux.v3.0.0.tar.gz && rm -rf cmdp.linux.v3.0.0.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version && echo "install success"
+```
 
 
 
-#### 快速使用
+`NEW`已经公开cmdp服务端程序，允许自行搭建cmdp服务端 
+
+包含cmdp服务端的接口文档和搭建教程
+
+[cmdp服务端搭建教程](https://github.com/yurencloud/cmdp-server-public)
+
+#### 二、快速使用
 
 搜索自己收藏的所有和mysql相关的shell命令或脚本文件`全文模糊搜索`
 
-```
+```bash
 cmdp s mysql
 ```
 
-```shell
+```bash
 *** 输出 ***
 docker exec -it mysql bash |  docker进入mysql容器 private id:9
-docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASWORD -d mysql | docker-mysql docker快速创建mysql容器 public id:120
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD={{password}} -d mysql | docker-mysql docker快速创建mysql容器 public id:120
 ...
 ```
 
 快速执行创建docker mysql 容器命令
 
-```shell
+```bash
 cmdp e docker-mysql
-// 相当于执行 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=PASWORD -d mysql
+# 相当于执行 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD={{password}} -d mysql
 ```
+
+支持参数替换
+
+```bash
+cmdp e docker-mysql 123456
+# 或 cmdp e docker-mysql password=123456
+# 相当于执行 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+```
+
+支持执行他人公开的命令
+
+```
+cmdp e someone/docker-mysql
+```
+
+支持上传和下载脚本文件
+
+```bash
+cmdp p updateYumToAliyun.sh yum "快速切换yum源为阿里云源脚本"
+cmdp l yum # 下载
+```
+
+支持执行远程脚本文件
+
+```
+cmdp e yum -f
+cmdp e someone/yum -f -F # 执行他人的公开的脚本文件
+# 相当于直接执行远程的 updateYumToAliyun.sh 脚本文件
+```
+
+
+
+其他特性
+
+- 支持关注他人
+- 支持fork他人命令或文件
+- 支持多平台登录
+- 支持远程同步命令
+- 支持模糊搜索
+- 支持循环嵌套支持命令
+- 更多特性见下文...
+
+
 
 ![demo](http://cloud.yurencloud.com/index.php/s/pCYZvM1AFJGtdeW/download)
 
 
 
-#### 其他安装方式
-
-##### wget 直接安装 （仅限linux）
-
-64位
-
-```
-wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux.tar.gz && tar -zxvf cmdp.linux.tar.gz && rm -rf cmdp.linux.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
-```
-
-32位
-
-```
-wget https://github.com/yurencloud/cmdp/releases/download/v2.1.0/cmdp.linux32.tar.gz && tar -zxvf cmdp.linux32.tar.gz && rm -rf cmdp.linux32.tar.gz && chmod +x cmdp && mv cmdp /bin/cmdp && cmdp version
-```
-
-若正常输出版本号，即为安装成功`cmdp version 2.0.0`
-
-
-
-##### 直接下载工具
-
-点击[下载地址](https://github.com/yurencloud/cmdp/releases)
-
-解压后，工具可以直接使用，但建议将命令工具所在目录添加到系统路径`PATH`中
-
-```
-//windows
-设置环境变量
-点击Path，编辑
-假设cmdp在C:\tool\cmdp，只要在Path中添加一条C:\tool
-
-//linux,mac
-假设cmdp在/home/tool/cmdp
-vi ~/.bash_profile 或.bashrc
-添加export PATH=$PATH:/home/tool
-source ~/.bash_profile
-```
-
-在mac或linux若出现`Permission denied`问题，请用下面方法添加可执行权限
-
-```
-chmod +x cmdp
-```
-
-### 快速使用
+### 二、详细文档
 
 ```
 $ cmdp help
@@ -95,7 +126,7 @@ USAGE:
    cmdp [global options] command [command options] [arguments...]
 
 VERSION:
-   2.1.0
+   3.0.0
 
 COMMANDS:
      search, s       search command, code, account, text, etc.
@@ -103,6 +134,7 @@ COMMANDS:
      create, c       create command to remote
      delete, d       delete command by id
      exec, e         exec command
+     forkcmd, fc     fork command, code, account, text, etc.
      register        user register
      login           login by username and password
      logout          logout
@@ -112,6 +144,7 @@ COMMANDS:
      pull, l, pl, P  pull your file from remote
      find, f         find your files from remote by keyword
      remove, r       remove your remote file by id
+     forkfile, ff    fork file.
      star            star other user
      update          update cmdp version
      user, u         search users, order by stars count desc, cmds count desc, files count desc
@@ -387,6 +420,30 @@ cmdp star USERNAME
 // 示例
 cmdp star mackwang
 ```
+
+#### fork他人的命令
+
+fork是复制拷贝，所以即使他人删除此命令，你fork的命令仍然在。
+
+```
+cmdp forkcmd USERNAME/KEYWORD [forkcmd,fc]
+// 示例
+cmdp forkcmd mackwang/mysql
+cmdp fc mackwang/mysql
+```
+
+#### fork他人的文件
+
+fork是复制拷贝，所以即使他人删除此文件，你fork的文件仍然在。
+
+```
+cmdp forkfile USERNAME/KEYWORD [forkfile,ff]
+// 示例
+cmdp forkfile mackwang/mysql.sh
+cmdp ff mackwang/mysql.sh
+```
+
+#### 
 
 #### 显示所有的关注或收藏列表
 

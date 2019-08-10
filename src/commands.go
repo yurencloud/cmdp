@@ -12,7 +12,7 @@ var (
 		Usage:   "show version",
 		Aliases: []string{"v"},
 		Action: func(ctx *cli.Context) {
-			fmt.Println("cmdp version 2.1.0")
+			fmt.Println("cmdp version 3.0.0")
 		},
 	}
 	SearchCommand = cli.Command{
