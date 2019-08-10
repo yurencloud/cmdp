@@ -156,7 +156,9 @@ func ExecAction(ctx *cli.Context) {
 			if err != nil {
 				color.Red("exec fail")
 			} else {
-				fmt.Println(output)
+				if len(output) > 0 {
+					fmt.Print(output)
+				}
 				//color.Green("success")
 			}
 		} else {
@@ -179,7 +181,9 @@ func ExecAction(ctx *cli.Context) {
 			if err != nil {
 				color.Red("error")
 			} else {
-				fmt.Println(output)
+				if len(output) > 0 {
+					fmt.Print(output)
+				}
 				//color.Green(result.Message)
 			}
 		} else {

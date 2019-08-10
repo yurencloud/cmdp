@@ -79,7 +79,7 @@ cmdp e docker-mysql 123456
 支持执行他人公开的命令
 
 ```
-cmdp e someone/docker-mysql
+cmdp e -F someone/docker-mysql
 ```
 
 支持上传和下载脚本文件
@@ -92,8 +92,8 @@ cmdp l yum # 下载
 支持执行远程脚本文件
 
 ```
-cmdp e yum -f
-cmdp e someone/yum -f -F # 执行他人的公开的脚本文件
+cmdp e -f yum
+cmdp e -F -f someone/yum # 执行他人的公开的脚本文件
 # 相当于直接执行远程的 updateYumToAliyun.sh 脚本文件
 ```
 
@@ -316,7 +316,7 @@ cmdp exec KEYWORD [exec,e]
 cmdp e dockerMysql
 // 执行他人创建的命令,注意，因为执行他人命令是一件非常危险的事情，所以默认只是显示文本，若想执行，需要添加--force,-F参数
 // 只有他人公开的内容，你才可见 [--force,-F]
-cmdp e tom/dockerMysql --force
+cmdp e --force tom/dockerMysql
 ```
 
 
@@ -436,7 +436,7 @@ cmdp exec KEYWORD [exec,e]
 cmdp e dockerMysql -f
 // 执行他人创建的单个文件命令,注意，因为执行他人命令是一件非常危险的事情，所以默认只是显示单个文件的文本，若想执行，需要添加--force,-F参数
 // 只有他人公开的文件才可下载或执行
-cmdp e tom/dockerMysql -f --force
+cmdp e -f --force tom/dockerMysql
 ```
 
 
