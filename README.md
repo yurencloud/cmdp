@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://cmdp.yurencloud.com/document" target="_blank">使用文档</a>
   |
-  <a href="https://cmdp.yurencloud.com/document"  target="_blank">用户排名</a>
+  <a href="https://cmdp.yurencloud.com/user"  target="_blank">用户排名</a>
   |
   <a href="http://cmdp.yurencloud.com"  target="_blank">官方网站</a>
 </p>
