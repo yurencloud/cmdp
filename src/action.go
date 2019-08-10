@@ -349,6 +349,9 @@ func PullFileAction(ctx *cli.Context) {
 		if file.Private {
 			status = "private"
 		}
+		// 在生成文件之前，替换占位参数
+		file.Content = insertParams(file.Content, ctx.Args())
+
 		if ctx.Bool("print") {
 			fmt.Println(file.Content)
 			return
