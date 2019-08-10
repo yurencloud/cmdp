@@ -141,11 +141,7 @@ func ExecAction(ctx *cli.Context) {
 		color.Red("please input keyword")
 		return
 	}
-	green := color.New(color.FgGreen).SprintFunc()
-	blue := color.New(color.FgBlue).SprintFunc()
-	cyan := color.New(color.FgCyan).SprintFunc()
-	magenta := color.New(color.FgMagenta).SprintFunc()
-	red := color.New(color.FgRed).SprintFunc()
+
 	if ctx.Bool("file") {
 		result := DownloadFile(ctx.Args()[0])
 		if result.Status == SUCCESS {
@@ -154,11 +150,6 @@ func ExecAction(ctx *cli.Context) {
 				fmt.Println(file.Content)
 				return
 			}
-			status := "public"
-			if file.Private {
-				status = magenta("private")
-			}
-			fmt.Fprintf(color.Output, "%s | %s %s %s id:%s\n", green(file.Name), blue(file.Keyword), cyan(file.Comment), status, red(file.Id))
 			// 在执行之前，替换占位参数
 			result.Data.Content = insertParams(result.Data.Content, ctx.Args())
 			output, err := Exec(result.Data.Content)
@@ -166,7 +157,7 @@ func ExecAction(ctx *cli.Context) {
 				color.Red("exec fail")
 			} else {
 				fmt.Println(output)
-				color.Green("success")
+				//color.Green("success")
 			}
 		} else {
 			color.Red(result.Message)
@@ -182,11 +173,6 @@ func ExecAction(ctx *cli.Context) {
 				fmt.Println(cmd.Cmd)
 				return
 			}
-			status := "public"
-			if cmd.Private {
-				status = magenta("private")
-			}
-			fmt.Fprintf(color.Output, "%s | %s %s %s id:%s\n", green(cmd.Cmd), blue(cmd.Keyword), cyan(cmd.Comment), status, red(cmd.Id))
 			// 在执行之前，替换占位参数
 			result.Data.Cmd = insertParams(result.Data.Cmd, ctx.Args())
 			output, err := Exec(result.Data.Cmd)
@@ -194,7 +180,7 @@ func ExecAction(ctx *cli.Context) {
 				color.Red("error")
 			} else {
 				fmt.Println(output)
-				color.Green(result.Message)
+				//color.Green(result.Message)
 			}
 		} else {
 			color.Red(result.Message)
