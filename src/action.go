@@ -150,9 +150,18 @@ func ExecAction(ctx *cli.Context) {
 				fmt.Println(file.Content)
 				return
 			}
-			// 在执行之前，替换占位参数
-			result.Data.Content = insertParams(result.Data.Content, ctx.Args())
-			output, err := Exec(result.Data.Content)
+			if !ctx.Bool("keep") {
+				// 在执行之前，替换占位参数
+				result.Data.Content = insertParams(result.Data.Content, ctx.Args())
+			}
+			var output string
+			var err error
+			if ctx.Bool("command") {
+				output, err = Exec(result.Data.Content)
+			} else {
+
+			}
+
 			if err != nil {
 				color.Red("exec fail")
 			} else {

@@ -24,3 +24,5 @@ func Exec(s string) (string, error) {
 
 	return out.String(), err
 }
+
+// TODO:: 增加执行sh文件的功能

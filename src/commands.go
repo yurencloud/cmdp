@@ -69,6 +69,10 @@ var (
 		Flags: []cli.Flag{
 			cli.BoolFlag{
 				Name:  "file,f",
+				Usage: "exec bash file",
+			},
+			cli.BoolFlag{
+				Name:  "command,c",
 				Usage: "exec command from file",
 			},
 			cli.BoolFlag{
@@ -78,6 +82,10 @@ var (
 			cli.BoolFlag{
 				Name:  "force,F",
 				Usage: "force exec other user's dangerous command!",
+			},
+			cli.BoolFlag{
+				Name:  "keep,k",
+				Usage: "keep content, not replace param!",
 			},
 		},
 	}
